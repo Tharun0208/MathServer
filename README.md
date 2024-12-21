@@ -32,100 +32,77 @@ Create a HTML file to implement form based input and output.
 Publish the website in the given URL.
 
 ## PROGRAM :
-  math.html
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Area of a Rectangle</title>
-    <style>
-      h1 {
-        font-size: 20px;
-        background-color: blue;
-        color: orange;
-        text-align: center;
-        padding: 7px;
-        margin-bottom: 6px;
-      }
-  
-      .formelt {
-        color: rgb(255, 0, 179);
-        text-align: center;
-        padding-top: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="edge">
-      <div class="box">
-        <h1>Area of a Rectangle</h1>
+math.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<title>Power Calculation (P = I²R)</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<style type="text/css">
+body {
+    background-color:  #00bfff;
+}
+.edge {
+    width: 100%;
+    padding-top: 250px;
+    text-align: center;
+}
+.box {
+    display: inline-block;
+    border: thick double rgb(59, 8, 116);
+    width: 500px;
+    min-height: 300px;
+    font-size: 20px;
+    background-color: #fefbd8;
+}
+.formelt {
+    color: black;
+    text-align: center;
+    margin-top: 7px;
+    margin-bottom: 6px;
+}
+h1 {
+    color: black;
+    padding-top: 20px;
+}
+</style>
+</head>
+<body>
+<div class="edge">
+    <div class="box">
+        <h1>Power Calculation</h1>
+        <h3>Tharun R</h3>
         <form method="POST">
-          {% csrf_token %}
-          <div class="formelt">
-            Length: <input type="text" name="length" value="{{ l }}" required></input> (in m)<br />
-          </div>
-          <div class="formelt">
-            Breadth: <input type="text" name="breadth" value="{{ b }}" required></input> (in m)<br />
-          </div>
-          <div class="formelt">
-            <input type="submit" value="Calculate"></input><br />
-          </div>
-          <div class="formelt">
-            Area: <input type="text" name="area" value="{{ area }}" readonly></input> m<sup>2</sup><br />
-          </div>
+            
+            <div class="formelt">
+                Current (I): <input type="text" name="current" value="{{current}}"> A<br/>
+            </div>
+            <div class="formelt">
+                Resistance (R): <input type="text" name="resistance" value="{{resistance}}"> Ω<br/>
+            </div>
+            <div class="formelt">
+                <input type="submit" value="Calculate"><br/>
+            </div>
+            <div class="formelt">
+                Power (P): <input type="text" name="power" value="{{power}}"> W<br/>
+            </div>
         </form>
-      </div>
     </div>
-  </body>
-  </html>
-  
-  
-  views.py
-  from django.shortcuts import render
-  
-  def rectarea(request):
-      context = {}
-      context['area'] = "0"
-      context['l'] = "0"
-      context['b'] = "0"
-      
-      if request.method == 'POST':
-          print("POST method is used")
-          l = request.POST.get('length', '0')
-          b = request.POST.get('breadth', '0')
-          print('request=', request)
-          print('Length=', l)
-          print('Breadth=', b)
-          area = int(l) * int(b)
-          context['area'] = area
-          context['l'] = l
-          context['b'] = b
-          print('Area=', area)
-  
-      return render(request, 'mathapp/math.html', context)
-  
-  
-  urls.py
-  from django.contrib import admin
-  from django.urls import path
-  from mathapp import views
-  
-  urlpatterns = [
-      path('admin/', admin.site.urls),
-      path('areaofrectangle/', views.rectarea, name="areaofrectangle"),
-      path('', views.rectarea, name="areaofrectangleroot")
-  ]
+</div>
+</body>
+</html>
 
 
 
 ## SERVER SIDE PROCESSING:
-![image](https://github.com/user-attachments/assets/c2842c46-f802-4de7-9d9c-b7990b5c30d0)
-![image](https://github.com/user-attachments/assets/3e4dae7c-ec72-4046-bfbd-334cca764812)
+![Screenshot 2024-12-21 104255](https://github.com/user-attachments/assets/30a37325-cc07-4384-b578-2a25ce8a7690)
 
 
 ## HOMEPAGE:
-![Screenshot 2024-12-12 225613](https://github.com/user-attachments/assets/d1b150a7-bbfa-45c7-88e0-49d66b2df6b8)
+![Screenshot 2024-12-21 103931](https://github.com/user-attachments/assets/0f6607c1-8dbc-477c-82d1-65ac6005342d)
 
 
 ## RESULT:
